@@ -14,10 +14,10 @@ Function.prototype.inherits = function(fun) {
 
   MovingObject = Asteroids.MovingObject;
   
-  MovingObject.prototype.update = function (x_vel, y_vel){
-    this.x_coord += x_vel;
-    this.y_coord += y_vel;
-  };
+//  MovingObject.prototype.update = function (x_vel, y_vel){
+//    this.x_coord += x_vel;
+//    this.y_coord += y_vel;
+//  };
 
   MovingObject.prototype.offScreen = function(ctx) {
     return (this.x_coord < 0 || this.x_coord > ctx.canvas.width ||
@@ -217,9 +217,9 @@ Function.prototype.inherits = function(fun) {
     return bullet;
   };
 
-  Ship.prototype.update = function(){
+//  Ship.prototype.update = function(){
 
-  };
+//  };
 
   Asteroids.Bullet = function(x_coord, y_coord, x_vel, y_vel){
     this.x_coord = x_coord;
