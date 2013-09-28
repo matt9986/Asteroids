@@ -72,11 +72,12 @@ Function.prototype.inherits = function(fun) {
 
   Asteroids.Game = function() {
     var canvas = document.createElement("canvas");
+    var div = document.getElementById("asteroidsGame");
     canvas.id = "asteroids";
-    document.body.appendChild(canvas)
+    div.appendChild(canvas)
 
-    canvas.width = 800;
-    canvas.height = 600;
+    canvas.width = div.width;
+    canvas.height = div.height;
     this.ctx = canvas.getContext("2d");
 
     var max_x = this.ctx.canvas.width;
