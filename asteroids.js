@@ -90,6 +90,28 @@ Function.prototype.inherits = function(fun) {
     this.bullets = [];
   };
   var Game = Asteroids.Game
+  
+  Game.prototype.check_keys = function (key_arr) {
+    for( var i = 0; i < key_arr.length; i++){
+      switch(key_arr[i]){
+        case 38: //up
+          this.ship.power.bind(this.ship, 5);
+          break;
+        case 40: //down
+          this.ship.power.bind(this.ship, -5);
+          break;
+        case 37: //left
+          this.ship.turn.bind(this.ship, -0.1);
+          break;
+        case 39: //right
+          this.ship.turn.bind(this.ship, 0.1);
+          break;
+        case 32: //space
+          this.shipFireBullet.bind(this);
+          break;
+      };
+    };
+  };
 
   Game.prototype.draw = function(){
     this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
@@ -120,6 +142,7 @@ Function.prototype.inherits = function(fun) {
   }
 
   Game.prototype.update = function() {
+    this.check_keys(key.getPressedKeyCodes());
     this.ship.update();
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].update();
@@ -161,14 +184,7 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.start = function() {
     var currentGame = this;
 
-    key("up", this.ship.power.bind(this.ship, 5));
-    key("down", this.ship.power.bind(this.ship, -5));
-    key("left", this.ship.turn.bind(this.ship, -0.1));
-    key("right", this.ship.turn.bind(this.ship, 0.1));
-    key("space", this.shipFireBullet.bind(this));
-
     var gameUpdater = setInterval(function() {
-      console.log(key.getPressedKeyCodes());
       if (currentGame.update.bind(currentGame)()) {
         clearInterval(gameUpdater);
         clearInterval(astGenerator);
