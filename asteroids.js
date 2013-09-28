@@ -168,10 +168,10 @@ Function.prototype.inherits = function(fun) {
     key("space", this.shipFireBullet.bind(this));
 
     var gameUpdater = setInterval(function() {
+      console.log(key.getPressedKeyCodes());
       if (currentGame.update.bind(currentGame)()) {
         clearInterval(gameUpdater);
         clearInterval(astGenerator);
-        console.log(key.getPressedKeyCodes());
       }
     }, 30);
 
