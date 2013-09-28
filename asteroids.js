@@ -4,15 +4,15 @@ Function.prototype.inherits = function(fun) {
   this.prototype = new Surrogate();
 }
 
-(function(root){
+(function (root) {
   Asteroids = root.Asteroids = (root.Asteroids || {});
   
   Asteroids.MovingObject = function(x_coord, y_coord) {
     this.x_coord = x_coord;
     this.y_coord = y_coord;
-  }
+  };
 
-  MovingObject = Asteroids.MovingObject
+  MovingObject = Asteroids.MovingObject;
   
   MovingObject.prototype.update = function (x_vel, y_vel){
     this.x_coord += x_vel;
