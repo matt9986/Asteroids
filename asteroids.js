@@ -56,9 +56,9 @@ Function.prototype.inherits = function(fun) {
 
   Asteroid.prototype.draw = function(ctx) {
     ctx.beginPath();
-    ctx.moveTo(this.endges[0])
+    ctx.moveTo(this.edges[0])
     for(var i = 1; i < this.edges.length; i++){
-      ctx.lineTo(i);
+      ctx.lineTo(this.edges[i]);
     };
     //ctx.arc(this.x_coord, this.y_coord, this.radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = "black";
