@@ -169,8 +169,9 @@ Function.prototype.inherits = function(fun) {
 
     var gameUpdater = setInterval(function() {
       if (currentGame.update.bind(currentGame)()) {
-       clearInterval(gameUpdater);
-       clearInterval(astGenerator);
+        clearInterval(gameUpdater);
+        clearInterval(astGenerator);
+        console.log(key.getPressedKeyCodes());
       }
     }, 30);
 
