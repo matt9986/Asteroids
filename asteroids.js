@@ -76,8 +76,8 @@ Function.prototype.inherits = function(fun) {
     canvas.id = "asteroids";
     div.appendChild(canvas)
 
-    canvas.width = div.width;
-    canvas.height = div.height;
+    canvas.width = div.clientWidth;
+    canvas.height = div.clientHeight;
     this.ctx = canvas.getContext("2d");
 
     var max_x = this.ctx.canvas.width;
@@ -93,7 +93,6 @@ Function.prototype.inherits = function(fun) {
   var Game = Asteroids.Game
   
   Game.prototype.check_keys = function (key_arr) {
-    console.log(key_arr);
     for( var i = 0; i < key_arr.length; i++){
       switch (key_arr[i]) {
         case 38: //up
