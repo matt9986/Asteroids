@@ -94,23 +94,21 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.check_keys = function (key_arr) {
     console.log(key_arr);
     for( var i = 0; i < key_arr.length; i++){
-      console.log(i)
       switch (key_arr[i]) {
         case 38: //up
-          debugger
-          this.ship.power.bind(this.ship, 5);
+          this.ship.power(5);
           break;
         case 40: //down
-          this.ship.power.bind(this.ship, -5);
+          this.ship.power(-5);
           break;
         case 37: //left
-          this.ship.turn.bind(this.ship, -0.1);
+          this.ship.turn(-0.1);
           break;
         case 39: //right
-          this.ship.turn.bind(this.ship, 0.1);
+          this.ship.turn(0.1);
           break;
         case 32: //space
-          this.shipFireBullet.bind(this);
+          this.shipFireBullet();
           break;
       };
     };
