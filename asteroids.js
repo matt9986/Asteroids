@@ -2,7 +2,7 @@ Function.prototype.inherits = function(fun) {
   function Surrogate() {};
   Surrogate.prototype = fun.prototype;
   this.prototype = new Surrogate();
-}
+};
 
 (function (root) {
   Asteroids = root.Asteroids = (root.Asteroids || {});
