@@ -30,7 +30,7 @@ Function.prototype.inherits = function(fun) {
     this.edges = [];
     for(var i = 0; i < 10; i++){
       var angle = (Math.PI * i / 5);
-      var r = (Math.rand() - 0.5) * 10 + radius;
+      var r = (Math.random() - 0.5) * 10 + radius;
       var x = (Math.sin(angle) * r);
       var y = (Math.cos(angle) * r);
       this.edges.push([x, y]);
