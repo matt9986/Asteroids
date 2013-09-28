@@ -13,11 +13,6 @@ Function.prototype.inherits = function(fun) {
   };
 
   MovingObject = Asteroids.MovingObject;
-  
-//  MovingObject.prototype.update = function (x_vel, y_vel){
-//    this.x_coord += x_vel;
-//    this.y_coord += y_vel;
-//  };
 
   MovingObject.prototype.offScreen = function(ctx) {
     return (this.x_coord < 0 || this.x_coord > ctx.canvas.width ||
@@ -155,10 +150,10 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.start = function() {
     var currentGame = this;
 
-    key("up", this.ship.power.bind(this.ship, 0, -0.5));
-    key("down", this.ship.power.bind(this.ship, 0, 0.5));
-    key("left", this.ship.power.bind(this.ship, -0.5, 0));
-    key("right", this.ship.power.bind(this.ship, 0.5, 0));
+    key("up", this.ship.power.bind(this.ship, 0, -5));
+    key("down", this.ship.power.bind(this.ship, 0, 5));
+    key("left", this.ship.power.bind(this.ship, -5, 0));
+    key("right", this.ship.power.bind(this.ship, 5, 0));
     key("space", this.shipFireBullet.bind(this));
 
     var gameUpdater = setInterval(function() {
@@ -208,8 +203,8 @@ Function.prototype.inherits = function(fun) {
   };
 
   Ship.prototype.power = function(dxvel, dyvel){
-    this.x_vel += dxvel;
-    this.y_vel += dyvel;
+    this.x_vel = dxvel;
+    this.y_vel = dyvel;
   };
 
   Ship.prototype.fireBullet = function() {
@@ -217,15 +212,11 @@ Function.prototype.inherits = function(fun) {
     return bullet;
   };
 
-//  Ship.prototype.update = function(){
-
-//  };
-
   Asteroids.Bullet = function(x_coord, y_coord, x_vel, y_vel){
     this.x_coord = x_coord;
     this.y_coord = y_coord;
-    this.x_vel = 30 * (x_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
-    this.y_vel = 30 * (y_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
+    this.x_vel = 10 * (x_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
+    this.y_vel = 10 * (y_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
   };
 
   var Bullet = Asteroids.Bullet;
