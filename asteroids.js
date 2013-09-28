@@ -30,8 +30,9 @@ Function.prototype.inherits = function(fun) {
     this.edges = [];
     for(var i = 0; i < 10; i++){
       var angle = (Math.PI * i / 5);
-      var x = Math.sin(angle) * radius;
-      var y = Math.cos(angle) * radius;
+      var r = (Math.rand() - 0.5) * 10 + radius;
+      var x = (Math.sin(angle) * r);
+      var y = (Math.cos(angle) * r);
       this.edges.push([x, y]);
     };
     this.radius = radius;
@@ -57,15 +58,15 @@ Function.prototype.inherits = function(fun) {
 
   Asteroid.prototype.draw = function(ctx) {
     ctx.beginPath();
-    ctx.moveTo(this.edges[0][0] + this.x_coord, this.edges[0][1] + this.y_coord)
+    ctx.moveTo(this.edges[0][0] + this.x_coord, this.edges[0][1] + this.y_coord);
     for(var i = 1; i < this.edges.length; i++){
       ctx.lineTo(this.edges[i][0] + this.x_coord, this.edges[i][1] + this.y_coord);
     };
-    //ctx.arc(this.x_coord, this.y_coord, this.radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = "black";
+    ctx.lineTo(this.edges[0][0] + this.x_coord, this.edges[0][1] + this.y_coord);
+    //ctx.fillStyle = "black";
     ctx.fill();
-    ctx.lineWidth = "5";
-    ctx.strokeStyle = "#003300";
+    ctx.lineWidth = "2";
+    ctx.strokeStyle = "black";
     ctx.stroke();
   };
 
@@ -77,7 +78,6 @@ Function.prototype.inherits = function(fun) {
     canvas.width = 800;
     canvas.height = 600;
     this.ctx = canvas.getContext("2d");
-    console.log(this.ctx);
 
     var max_x = this.ctx.canvas.width;
     var max_y = this.ctx.canvas.height;
