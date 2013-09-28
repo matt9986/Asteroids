@@ -24,10 +24,16 @@ Function.prototype.inherits = function(fun) {
     this.y_coord = this.y_coord + this.y_vel;
   };
 
-  Asteroids.Asteroid = function(x_coord, y_coord) {
+  Asteroids.Asteroid = function(x_coord, y_coord, radius) {
     this.x_coord = x_coord;
     this.y_coord = y_coord;
-    this.radius = (Math.random() * 50);
+    this.edges = [];
+    for(var i = 0; i < 10; i++){
+      var angle = (Math.PI * i / 5);
+      var x = Math.sin(angle) * radius;
+      var y = Math.cos(angle) * radius;
+      this.edges.push([x, y]);
+    };
   };
   Asteroid = Asteroids.Asteroid;
   Asteroid.inherits(Asteroids.MovingObject);
@@ -35,8 +41,8 @@ Function.prototype.inherits = function(fun) {
   Asteroids.randomAsteroid = function(max_x, max_y, max_speed) {
     var rand_x = (Math.round(Math.random()) * max_x);
     var rand_y = (Math.round(Math.random())  * max_y);
-
-    var random = new Asteroid(rand_x, rand_y);
+    var rand_rad = Math.random() * 50;
+    var random = new Asteroid(rand_x, rand_y, rand_rad);
 
     random.randomVelocity(max_speed);
 
@@ -50,7 +56,11 @@ Function.prototype.inherits = function(fun) {
 
   Asteroid.prototype.draw = function(ctx) {
     ctx.beginPath();
-    ctx.arc(this.x_coord, this.y_coord, this.radius, 0, 2 * Math.PI, false);
+    ctx.moveTo(this.endges[0])
+    for(var i = 1; i < this.edges.length; i++){
+      ctx.lineTo(i);
+    };
+    //ctx.arc(this.x_coord, this.y_coord, this.radius, 0, 2 * Math.PI, false);
     ctx.fillStyle = "black";
     ctx.fill();
     ctx.lineWidth = "5";
