@@ -224,8 +224,8 @@ Function.prototype.inherits = function(fun) {
   Asteroids.Bullet = function(x_coord, y_coord, x_vel, y_vel){
     this.x_coord = x_coord;
     this.y_coord = y_coord;
-    this.x_vel = 50 * (x_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
-    this.y_vel = 50 * (y_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
+    this.x_vel = 30 * (x_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
+    this.y_vel = 30 * (y_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
   };
 
   var Bullet = Asteroids.Bullet;
