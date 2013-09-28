@@ -161,8 +161,8 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.start = function() {
     var currentGame = this;
 
-    key("up", this.ship.power.bind(this.ship, -5));
-    key("down", this.ship.power.bind(this.ship, 5));
+    key("up", this.ship.power.bind(this.ship, 5));
+    key("down", this.ship.power.bind(this.ship, -5));
     key("left", this.ship.turn.bind(this.ship, -0.1));
     key("right", this.ship.turn.bind(this.ship, 0.1));
     key("space", this.shipFireBullet.bind(this));
@@ -187,7 +187,7 @@ Function.prototype.inherits = function(fun) {
     this.y_coord = (600 / 2);
     this.x_vel = 0;
     this.y_vel = 0;
-    this.side = 20;
+    this.side = 15;
   }
 
   var Ship = Asteroids.Ship
@@ -208,17 +208,16 @@ Function.prototype.inherits = function(fun) {
     ctx.strokeStyle = "red";
     ctx.stroke();
     
-    ctx.strokeRect(this.x_coord, this.y_coord, this.side, this.side);
-  }
+  };
 
   Ship.prototype.isHit = function(asteroids){
     for (var i = 0; i < asteroids.length; i++) {
-      var xdif = this.x_coord + (this.side * 0.5) - asteroids[i].x_coord;
-      var ydif = this.y_coord + (this.side * 0.5) - asteroids[i].y_coord;
+      var xdif = this.x_coord - asteroids[i].x_coord;
+      var ydif = this.y_coord - asteroids[i].y_coord;
 
       var dist = Math.pow((Math.pow(xdif, 2) + Math.pow(ydif, 2)), 0.5);
 
-      if ((asteroids[i].radius + this.side - 5) >= dist) {
+      if ((asteroids[i].radius + this.side) >= dist) {
         return true
       }
     }
