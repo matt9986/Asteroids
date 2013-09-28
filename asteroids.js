@@ -94,8 +94,10 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.check_keys = function (key_arr) {
     console.log(key_arr);
     for( var i = 0; i < key_arr.length; i++){
-      switch(key_arr[i]){
+      console.log(i)
+      switch (key_arr[i]) {
         case 38: //up
+          debugger
           this.ship.power.bind(this.ship, 5);
           break;
         case 40: //down
