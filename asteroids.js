@@ -28,8 +28,8 @@ Function.prototype.inherits = function(fun) {
     this.x_coord = x_coord;
     this.y_coord = y_coord;
     this.edges = [];
-    for(var i = 0; i < 10; i++){
-      var angle = (Math.PI * i / 5);
+    for(var i = 0; i < 12; i++){
+      var angle = (Math.PI * i / 6);
       var r = (Math.random() - 0.5) * 5 + radius;
       var x = (Math.sin(angle) * r);
       var y = (Math.cos(angle) * r);
@@ -161,10 +161,10 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.start = function() {
     var currentGame = this;
 
-    key("up", this.ship.power.bind(this.ship, 0, -5));
-    key("down", this.ship.power.bind(this.ship, 0, 5));
-    key("left", this.ship.power.bind(this.ship, -5, 0));
-    key("right", this.ship.power.bind(this.ship, 5, 0));
+    key("up", this.ship.power.bind(this.ship, -5));
+    key("down", this.ship.power.bind(this.ship, 5));
+    key("left", this.ship.turn.bind(this.ship, -0.1));
+    key("right", this.ship.turn.bind(this.ship, 0.1));
     key("space", this.shipFireBullet.bind(this));
 
     var gameUpdater = setInterval(function() {
@@ -194,8 +194,20 @@ Function.prototype.inherits = function(fun) {
   Ship.inherits(Asteroids.MovingObject)
 
   Ship.prototype.draw = function(ctx){
+    ctx.beginPath();
+    ctx.moveTo(this.x_coord + Math.cos(this.angle) * this.side, 
+               this.y_coord + Math.sin(this.angle) * this.side);
+    for(var i = 1; i < 3; i++){
+      var ang = this.angle + (2 * i * Math.PI / 3);
+      ctx.lineTo(this.x_coord + Math.cos(ang) * this.side,
+                 this.y_coord + Math.sin(ang) * this.side);
+    };
+    ctx.lineTo(this.x_coord + Math.cos(this.angle) * this.side,
+               this.y_coord + Math.sin(this.angle) * this.side);
+    ctx.lineWidth = "2";
     ctx.strokeStyle = "red";
-    ctx.lineWidth = 2;
+    ctx.stroke();
+    
     ctx.strokeRect(this.x_coord, this.y_coord, this.side, this.side);
   }
 
@@ -213,21 +225,25 @@ Function.prototype.inherits = function(fun) {
     return false
   };
 
-  Ship.prototype.power = function(dxvel, dyvel){
-    this.x_vel = dxvel;
-    this.y_vel = dyvel;
+  Ship.prototype.power = function (pow) {
+    this.x_vel = Math.cos(this.angle) * pow;
+    this.y_vel = Math.sin(this.angle) * pow;
+  };
+  
+  Ship.prototype.turn = function (direction) {
+    this.angle += direction;
   };
 
   Ship.prototype.fireBullet = function() {
-    var bullet = new Bullet(this.x_coord, this.y_coord, this.x_vel, this.y_vel);
+    var bullet = new Bullet(this.x_coord, this.y_coord, this.angle);
     return bullet;
   };
 
-  Asteroids.Bullet = function(x_coord, y_coord, x_vel, y_vel){
+  Asteroids.Bullet = function(x_coord, y_coord, trajectory){
     this.x_coord = x_coord;
     this.y_coord = y_coord;
-    this.x_vel = 10 * (x_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
-    this.y_vel = 10 * (y_vel/ (Math.abs(x_vel) + Math.abs(y_vel)));
+    this.x_vel = 10 * Math.cos(trajectory);
+    this.y_vel = 10 * Math.sin(trajectory);
   };
 
   var Bullet = Asteroids.Bullet;
