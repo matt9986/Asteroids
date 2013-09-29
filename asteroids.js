@@ -175,10 +175,10 @@ Function.prototype.inherits = function(fun) {
     this.bullet_asteroid_deep_impact();
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
-      this.ctx.strokeText("Hit! But you took " + this.score + " with you.",
-                          (this.ctx.canvas.width / 2) - 30,
-                          (this.ctx.canvas.height / 2) +20);
-      this.ctx.strokeText("Press 'r' to restart",
+      this.ctx.fillText("Hit! But you took " + this.score + " with you.",
+                          (this.ctx.canvas.width / 2) - 50,
+                          (this.ctx.canvas.height / 2) -20);
+      this.ctx.fillText("Press 'r' to restart",
                           (this.ctx.canvas.width / 2) - 20,
                           this.ctx.canvas.height / 2);
       return true;
