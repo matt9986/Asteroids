@@ -219,7 +219,7 @@ Function.prototype.inherits = function(fun) {
       if (currentGame.update.bind(currentGame)()) {
         clearInterval(gameUpdater);
         clearInterval(astGenerator);
-        key("r", currentGame.restart(currentGame)());
+        key("r", currentGame.restart.bind(currentGame));
       }
     }, 30);
 
