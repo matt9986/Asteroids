@@ -175,7 +175,7 @@ Function.prototype.inherits = function(fun) {
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
       alert("Hit! But you took " + this.score + " with you.");
-      this.ctx.strokeText("Press "r" to restart",
+      this.ctx.strokeText("Press 'r' to restart",
                           (this.ctx.canvas.width / 2) - 20,
                           this.ctx.canvas.height / 2);
       return true;
