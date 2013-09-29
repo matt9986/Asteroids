@@ -156,7 +156,7 @@ Function.prototype.inherits = function(fun) {
       }
     }
     if (this.ship.offScreen(this.ctx)) {
-      this.ship.wrap()
+      this.ship.wrap(this.ctx);
     }
     return this.asteroids;
   }
