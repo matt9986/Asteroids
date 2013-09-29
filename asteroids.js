@@ -76,8 +76,8 @@ Function.prototype.inherits = function(fun) {
     canvas.id = "asteroids";
     div.appendChild(canvas)
 
-    canvas.width = div.clientWidth;
-    canvas.height = div.clientHeight;
+    canvas.width = div.getAttribute("width");
+    canvas.height = div.getAttribute("height");
     this.ctx = canvas.getContext("2d");
 
     var max_x = this.ctx.canvas.width;
@@ -87,7 +87,7 @@ Function.prototype.inherits = function(fun) {
 
     this.asteroids = [];
     this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 10));
-
+    this.score = 0;
     this.bullets = [];
   };
   var Game = Asteroids.Game
@@ -155,7 +155,7 @@ Function.prototype.inherits = function(fun) {
     this.bullet_asteroid_deep_impact();
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
-      alert("hit!");
+      alert("Hit! But you took " + this.score + "with you.");
       return true;
     }
   }
@@ -177,6 +177,7 @@ Function.prototype.inherits = function(fun) {
         if ((this.asteroids[i].radius - 5) >= dist) {
           this.bullets.splice(j, 1);
           this.asteroids.splice(i, 1);
+          this.score += 1;
         }
       }
     }
