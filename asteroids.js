@@ -141,7 +141,7 @@ Function.prototype.inherits = function(fun) {
     for (var i = 0; i < this.bullets.length; i++) {
       this.bullets[i].draw(this.ctx);
     };
-    this.ctx.font("15px black")
+    this.ctx.font = "15px black";
     this.ctx.strokeText("Score: " + this.score, 15, 15);
   };
 
@@ -175,7 +175,9 @@ Function.prototype.inherits = function(fun) {
     this.bullet_asteroid_deep_impact();
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
-      alert("Hit! But you took " + this.score + " with you.");
+      this.ctx.strokeText("Hit! But you took " + this.score + " with you.",
+                          (this.ctx.canvas.width / 2) - 30,
+                          (this.ctx.canvas.height / 2) +20);
       this.ctx.strokeText("Press 'r' to restart",
                           (this.ctx.canvas.width / 2) - 20,
                           this.ctx.canvas.height / 2);
