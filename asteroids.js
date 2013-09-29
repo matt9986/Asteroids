@@ -206,6 +206,7 @@ Function.prototype.inherits = function(fun) {
   };
   
   Game.prototype.restart = function () {
+    key.unbind("r");
     this.asteroids = [];
     this.bullets = [];
     this.score = 0;
@@ -219,6 +220,7 @@ Function.prototype.inherits = function(fun) {
       if (currentGame.update.bind(currentGame)()) {
         clearInterval(gameUpdater);
         clearInterval(astGenerator);
+        key.unbind("up down left right space")
         key("r", currentGame.restart.bind(currentGame));
       }
     }, 30);
