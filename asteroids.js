@@ -121,12 +121,13 @@ Function.prototype.inherits = function(fun) {
 
     for (var i = 0; i < this.asteroids.length; i++) {
       this.asteroids[i].draw(this.ctx);
-    }
+    };
 
     for (var i = 0; i < this.bullets.length; i++) {
       this.bullets[i].draw(this.ctx);
-    }
-  }
+    };
+    this.ctx.strokeText("Score: " + this.score, 10, 10);
+  };
 
   Game.prototype.remove_offscreen_elements = function(){
     for(var i = 0; i < this.asteroids.length; i++){
@@ -155,7 +156,7 @@ Function.prototype.inherits = function(fun) {
     this.bullet_asteroid_deep_impact();
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
-      alert("Hit! But you took " + this.score + "with you.");
+      alert("Hit! But you took " + this.score + " with you.");
       return true;
     }
   }
