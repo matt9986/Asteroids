@@ -45,7 +45,7 @@ Function.prototype.inherits = function(fun) {
     this.edges = [];
     for(var i = 0; i < 12; i++){
       var angle = (Math.PI * i / 6);
-      var r = (Math.random() - 0.5) * 5 + radius;
+      var r = (Math.random() - 0.5) * 10 + radius;
       var x = (Math.sin(angle) * r);
       var y = (Math.cos(angle) * r);
       this.edges.push([x, y]);
@@ -58,7 +58,7 @@ Function.prototype.inherits = function(fun) {
   Asteroids.randomAsteroid = function(max_x, max_y, max_speed) {
     var rand_x = (Math.round(Math.random()) * max_x);
     var rand_y = (Math.round(Math.random())  * max_y);
-    var rand_rad = Math.random() * 50;
+    var rand_rad = 10 + (Math.random() * 40);
     var random = new Asteroid(rand_x, rand_y, rand_rad);
 
     random.randomVelocity(max_speed);
