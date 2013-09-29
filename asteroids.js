@@ -271,11 +271,6 @@ Function.prototype.inherits = function(fun) {
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
     ctx.strokeRect(this.x_coord, this.y_coord, 2, 2);
-  };
-
-  var game = new Game();
-
-  game.start();
-  
+  };  
 })(window)
 

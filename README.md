@@ -6,3 +6,6 @@ Uses arrow keys for steering and movement + space for firing.
 
 When game is initialized it looks for a div on the page with 
 id= "asteroidsGame" and inserts a canvas to fill the div.
+
+To initialize the game, call `new Asteroids.Game()` and then
+`.start()` on the new object.
