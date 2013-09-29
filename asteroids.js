@@ -213,6 +213,7 @@ Function.prototype.inherits = function(fun) {
     this.asteroids = [];
     this.bullets = [];
     this.score = 0;
+    this.ship.reset(this.ctx);
     this.start();
   };
 
@@ -237,8 +238,8 @@ Function.prototype.inherits = function(fun) {
 
   Asteroids.Ship = function(ctx){
     this.angle = 0;
-    this.x_coord = (800/ 2);
-    this.y_coord = (600 / 2);
+    this.x_coord = ctx.canvas.width / 2;
+    this.y_coord = ctx.canvas.height / 2;
     this.x_vel = 0;
     this.y_vel = 0;
     this.side = 15;
@@ -281,6 +282,13 @@ Function.prototype.inherits = function(fun) {
   Ship.prototype.power = function (pow) {
     this.x_vel = Math.cos(this.angle) * pow;
     this.y_vel = Math.sin(this.angle) * pow;
+  };
+  
+  Ship.prototype.reset = function (ctx) {
+    this.x_coord = ctx.canvas.width / 2;
+    this.y_coord = ctx.canvas.height / 2;
+    this.x_vel = 0;
+    this.y_vel = 0;
   };
   
   Ship.prototype.turn = function (direction) {
