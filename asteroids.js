@@ -141,7 +141,8 @@ Function.prototype.inherits = function(fun) {
     for (var i = 0; i < this.bullets.length; i++) {
       this.bullets[i].draw(this.ctx);
     };
-    this.ctx.strokeText("Score: " + this.score, 10, 10);
+    this.ctx.font("15px black")
+    this.ctx.strokeText("Score: " + this.score, 15, 15);
   };
 
   Game.prototype.remove_offscreen_elements = function(){
