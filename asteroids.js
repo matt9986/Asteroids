@@ -18,6 +18,21 @@ Function.prototype.inherits = function(fun) {
     return (this.x_coord < 0 || this.x_coord > ctx.canvas.width ||
             this.y_coord < 0 || this.y_coord > ctx.canvas.height);
   };
+  
+  MovingObject.prototype.wrap = function (ctx) {
+    if (this.x_coord < 0) {
+      this.x_coord += ctx.canvas.width;
+    };
+    if (this.x_coord > ctx.canvas.width) {
+      this.x_coord -= ctx.canvas.width;
+    };
+    if (this.y_coord < 0) {
+      this.y_coord += ctx.canvas.height;
+    };
+    if (this.y_coord > ctx.canvas.height) {
+      this.y_coord -= ctx.canvas.height;
+    };
+  };
 
   MovingObject.prototype.update = function() {
     this.x_coord = this.x_coord + this.x_vel;
@@ -132,13 +147,16 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.remove_offscreen_elements = function(){
     for(var i = 0; i < this.asteroids.length; i++){
       if(this.asteroids[i].offScreen(this.ctx)) {
-        this.asteroids.splice(i, 1);
+        this.asteroids.wrap(this.ctx);
       }
     }
     for (var i = 0; i < this.bullets.length; i++) {
       if(this.bullets[i].offScreen(this.ctx)) {
         this.bullets.splice(i, 1);
       }
+    }
+    if (this.ship.offScreen(this.ctx)) {
+      this.ship.wrap()
     }
     return this.asteroids;
   }
