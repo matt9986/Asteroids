@@ -147,7 +147,7 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.remove_offscreen_elements = function(){
     for(var i = 0; i < this.asteroids.length; i++){
       if(this.asteroids[i].offScreen(this.ctx)) {
-        this.asteroids.wrap(this.ctx);
+        this.asteroids[i].wrap(this.ctx);
       }
     }
     for (var i = 0; i < this.bullets.length; i++) {
