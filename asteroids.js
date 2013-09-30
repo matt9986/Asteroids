@@ -103,7 +103,7 @@ Function.prototype.inherits = function(fun) {
     this.ship = new Ship(this.ctx);
 
     this.asteroids = [];
-    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 15));
+    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 12));
     this.score = 0;
     this.bullets = [];
   };
@@ -177,6 +177,7 @@ Function.prototype.inherits = function(fun) {
     this.bullet_asteroid_deep_impact();
     this.draw();
     if (this.ship.isHit(this.asteroids)) {
+      this.ctx.fillStyle = "white";
       this.ctx.fillText("Hit! But you took " + this.score + " with you.",
                           (this.ctx.canvas.width / 2) - 50,
                           (this.ctx.canvas.height / 2) -20);
@@ -190,7 +191,7 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.draw_new_asteroid = function() {
     var max_x = this.ctx.canvas.width;
     var max_y = this.ctx.canvas.height;
-    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 15));
+    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 12));
   }
 
   Game.prototype.bullet_asteroid_deep_impact = function(){
