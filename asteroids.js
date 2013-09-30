@@ -81,18 +81,20 @@ Function.prototype.inherits = function(fun) {
     //ctx.fillStyle = "black";
     //ctx.fill();
     ctx.lineWidth = "2";
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "white";
     ctx.stroke();
   };
 
   Asteroids.Game = function() {
     var canvas = document.createElement("canvas");
     var div = document.getElementById("asteroidsGame");
+    div.style.backgroundColor = "black";
     canvas.id = "asteroids";
-    div.appendChild(canvas)
+    div.appendChild(canvas);
 
     canvas.width = div.getAttribute("width");
     canvas.height = div.getAttribute("height");
+    cavas.style = ""
     this.ctx = canvas.getContext("2d");
 
     var max_x = this.ctx.canvas.width;
@@ -101,7 +103,7 @@ Function.prototype.inherits = function(fun) {
     this.ship = new Ship(this.ctx);
 
     this.asteroids = [];
-    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 10));
+    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 15));
     this.score = 0;
     this.bullets = [];
   };
@@ -188,7 +190,7 @@ Function.prototype.inherits = function(fun) {
   Game.prototype.draw_new_asteroid = function() {
     var max_x = this.ctx.canvas.width;
     var max_y = this.ctx.canvas.height;
-    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 10));
+    this.asteroids.push(Asteroids.randomAsteroid(max_x, max_y, 15));
   }
 
   Game.prototype.bullet_asteroid_deep_impact = function(){
@@ -311,7 +313,7 @@ Function.prototype.inherits = function(fun) {
   Bullet.inherits(Asteroids.MovingObject);
 
   Bullet.prototype.draw = function(ctx) {
-    ctx.strokeStyle = "black";
+    ctx.strokeStyle = "white";
     ctx.lineWidth = 2;
     ctx.strokeRect(this.x_coord, this.y_coord, 2, 2);
   };  
