@@ -94,7 +94,7 @@ Function.prototype.inherits = function(fun) {
 
     canvas.width = div.getAttribute("width");
     canvas.height = div.getAttribute("height");
-    cavas.style = ""
+
     this.ctx = canvas.getContext("2d");
 
     var max_x = this.ctx.canvas.width;
