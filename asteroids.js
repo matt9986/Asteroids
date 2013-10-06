@@ -92,8 +92,8 @@ Function.prototype.inherits = function(fun) {
     canvas.id = "asteroids";
     div.appendChild(canvas);
 
-    canvas.width = div.getAttribute("width");
-    canvas.height = div.getAttribute("height");
+    canvas.width = div.clientWidth;
+    canvas.height = div.clientHeight;
 
     this.ctx = canvas.getContext("2d");
 
